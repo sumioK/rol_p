@@ -387,3 +387,120 @@ Processing by HomeController#top as HTML
 Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 2009)
 
 
+Started GET "/" for ::1 at 2022-06-30 05:16:16 +0900
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 9.3ms | Allocations: 346)
+  Rendered layout layouts/application.html.erb (Duration: 247.3ms | Allocations: 32310)
+Completed 200 OK in 318ms (Views: 270.1ms | ActiveRecord: 0.0ms | Allocations: 35568)
+
+
+Started GET "/posts" for ::1 at 2022-06-30 05:16:29 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+Started GET "/posts/index" for ::1 at 2022-06-30 05:16:55 +0900
+  
+ActionController::RoutingError (uninitialized constant PostisController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  PostsController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/" for ::1 at 2022-06-30 05:17:24 +0900
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.0ms | Allocations: 20)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 1474)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.0ms | Allocations: 1792)
+
+
+Started GET "/posts/index" for ::1 at 2022-06-30 05:18:39 +0900
+  
+ActionController::RoutingError (uninitialized constant PostisController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  PostsController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/posts/index" for ::1 at 2022-06-30 05:19:56 +0900
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered posts/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 158)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 1764)
+Completed 200 OK in 5ms (Views: 4.4ms | Allocations: 2516)
+
+
+Started GET "/" for ::1 at 2022-06-30 05:20:00 +0900
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.1ms | Allocations: 28)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 1651)
+Completed 200 OK in 4ms (Views: 3.7ms | Allocations: 2269)
+
+
+Started GET "/posts/index" for ::1 at 2022-06-30 05:24:15 +0900
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered posts/index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 232)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 1990)
+Completed 200 OK in 8ms (Views: 6.6ms | Allocations: 2834)
+
+
+Started GET "/posts/index" for ::1 at 2022-06-30 05:28:52 +0900
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered posts/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 252)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 2019)
+Completed 200 OK in 7ms (Views: 6.0ms | Allocations: 2842)
+
+
+Started GET "/posts/index" for ::1 at 2022-06-30 05:32:07 +0900
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered posts/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 223)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 1993)
+Completed 200 OK in 8ms (Views: 7.1ms | Allocations: 2940)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (19.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePosts (20220629204403)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220629204403"]]
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-06-29 20:46:00.530886"], ["updated_at", "2022-06-29 20:46:00.530886"]]
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.7ms)[0m  [1m[32mINSERT INTO "posts" ("content", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["content", "今日からProgateでRailsの勉強するよー！"], ["created_at", "2022-06-29 21:01:46.147451"], ["updated_at", "2022-06-29 21:01:46.147451"]]
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("content", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["content", "投稿一覧ページ作成中！"], ["created_at", "2022-06-29 21:03:03.397761"], ["updated_at", "2022-06-29 21:03:03.397761"]]
+  [1m[36mTRANSACTION (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (1.8ms)[0m  [1m[32mINSERT INTO "posts" ("content", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["content", "やっぱりプログラミングは楽しい！"], ["created_at", "2022-06-29 21:12:46.791550"], ["updated_at", "2022-06-29 21:12:46.791550"]]
+  [1m[36mTRANSACTION (19.0ms)[0m  [1m[36mcommit transaction[0m
