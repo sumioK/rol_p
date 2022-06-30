@@ -890,3 +890,50 @@ Processing by PostsController#show as HTML
 Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.1ms | Allocations: 2499)
 
 
+Started GET "/" for ::1 at 2022-06-30 21:35:34 +0900
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 1.0ms | Allocations: 336)
+  Rendered layout layouts/application.html.erb (Duration: 47.0ms | Allocations: 24243)
+Completed 200 OK in 60ms (Views: 52.5ms | ActiveRecord: 0.0ms | Allocations: 27500)
+
+
+Started GET "/" for ::1 at 2022-06-30 21:35:35 +0900
+Started GET "/" for ::1 at 2022-06-30 21:35:35 +0900
+Started GET "/" for ::1 at 2022-06-30 21:35:35 +0900
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.6ms | Allocations: 197)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 2188)
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.0ms | Allocations: 3116)
+
+
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.0ms | Allocations: 34)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 1457)
+Completed 200 OK in 4ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 1782)
+
+
+Processing by HomeController#top as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.0ms | Allocations: 20)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 1362)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms | Allocations: 1644)
+
+
+Started GET "/posts/new" for ::1 at 2022-06-30 21:35:50 +0900
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 144)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 1857)
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.0ms | Allocations: 2616)
+
+
