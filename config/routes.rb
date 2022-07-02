@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  get "signup" => "users#new"
+
+
   get 'users/index'
   get "users/:id" => "users#show"
+
 
   get "posts/index" => "posts#index"
   get "posts/new" => "posts#new"
@@ -9,6 +13,7 @@ Rails.application.routes.draw do
   get "posts/:id/edit" => "posts#edit"
   post "posts/:id/update" => "posts#update"
   post "posts/:id/destroy" => "posts#destroy"
+  
 
   get "/" => "home#top"
   get "about" => "home#about"
