@@ -8944,3 +8944,1309 @@ app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
 app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
 app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
 app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+Started GET "/" for ::1 at 2022-07-03 22:11:32 +0900
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#top as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+Redirected to http://localhost:3000/posts/index
+Filter chain halted as :forbid_login_user rendered or redirected
+Completed 302 Found in 12ms (ActiveRecord: 1.0ms | Allocations: 9746)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-03 22:11:32 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2486)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 4421)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.7ms | Allocations: 8436)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>RolP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <header>
+    <div class="header-logo">
+        <% if @current_user %>
+          <%= link_to("TweetApp", "/posts/index") %>
+        <% else %>
+          <%= link_to("TweetApp", "/") %>
+        <% end %>
+    </div>
+    <ul class="header-menus">
+     <% if @current_user 
+      <li>
+        <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+      </li>
+      <li>
+          <%= link_to("投稿一覧" , "/posts/index") %>
+      </li>
+      <li>
+          <%= link_to("新規投稿", "/posts/new") %>
+      </li>
+      <li>
+          <%= link_to("ユーザー一覧", "/users/index") %>
+      </li>
+      <li>
+          <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+      </li>
+
+    <% else %>
+      <li>
+      <%= link_to("TweetAppとは" , "/about")%>
+      </li>
+     
+      <li>
+          <%= link_to("新規登録", "/signup") %>
+      </li>
+      <li>
+        <%= link_to("ログイン", "/login")%>
+      </li>
+    <% end%>
+    </ul>
+  </header>
+      <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice]%>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>RolP</title>
+5:        <meta name="viewport" content="width=device-width,initial-scale=1">
+6:        <%= csrf_meta_tags %>
+7:        <%= csp_meta_tag %>
+8:        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+9:      </head>
+10:    
+11:      <body>
+12:        <header>
+13:        <div class="header-logo">
+14:            <% if @current_user %>
+15:              <%= link_to("TweetApp", "/posts/index") %>
+16:            <% else %>
+17:              <%= link_to("TweetApp", "/") %>
+18:            <% end %>
+19:        </div>
+20:        <ul class="header-menus">
+21:         <% if @current_user 
+22:          <li>
+23:            <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+24:          </li>
+25:          <li>
+26:              <%= link_to("投稿一覧" , "/posts/index") %>
+27:          </li>
+28:          <li>
+29:              <%= link_to("新規投稿", "/posts/new") %>
+30:          </li>
+31:          <li>
+32:              <%= link_to("ユーザー一覧", "/users/index") %>
+33:          </li>
+34:          <li>
+35:              <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+36:          </li>
+37:    
+38:        <% else %>
+39:          <li>
+40:          <%= link_to("TweetAppとは" , "/about")%>
+41:          </li>
+42:         
+43:          <li>
+44:              <%= link_to("新規登録", "/signup") %>
+45:          </li>
+46:          <li>
+47:            <%= link_to("ログイン", "/login")%>
+48:          </li>
+49:        <% end%>
+50:        </ul>
+51:      </header>
+52:          <% if flash[:notice]%>
+53:          <div class="flash">
+54:            <%= flash[:notice]%>
+55:          </div>
+56:        <% end %>
+57:        <%= yield %>
+58:      </body>
+59:    </html>
+  
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+Started GET "/" for ::1 at 2022-07-03 22:11:53 +0900
+Processing by HomeController#top as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+Redirected to http://localhost:3000/posts/index
+Filter chain halted as :forbid_login_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1002)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-03 22:11:53 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 704)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 2281)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 3294)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>RolP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <header>
+    <div class="header-logo">
+        <% if @current_user %>
+          <%= link_to("TweetApp", "/posts/index") %>
+        <% else %>
+          <%= link_to("TweetApp", "/") %>
+        <% end %>
+    </div>
+    <ul class="header-menus">
+     <% if @current_user 
+      <li>
+        <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+      </li>
+      <li>
+          <%= link_to("投稿一覧" , "/posts/index") %>
+      </li>
+      <li>
+          <%= link_to("新規投稿", "/posts/new") %>
+      </li>
+      <li>
+          <%= link_to("ユーザー一覧", "/users/index") %>
+      </li>
+      <li>
+          <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+      </li>
+
+    <% else %>
+      <li>
+      <%= link_to("TweetAppとは" , "/about")%>
+      </li>
+     
+      <li>
+          <%= link_to("新規登録", "/signup") %>
+      </li>
+      <li>
+        <%= link_to("ログイン", "/login")%>
+      </li>
+    <% end%>
+    </ul>
+  </header>
+      <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice]%>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>RolP</title>
+5:        <meta name="viewport" content="width=device-width,initial-scale=1">
+6:        <%= csrf_meta_tags %>
+7:        <%= csp_meta_tag %>
+8:        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+9:      </head>
+10:    
+11:      <body>
+12:        <header>
+13:        <div class="header-logo">
+14:            <% if @current_user %>
+15:              <%= link_to("TweetApp", "/posts/index") %>
+16:            <% else %>
+17:              <%= link_to("TweetApp", "/") %>
+18:            <% end %>
+19:        </div>
+20:        <ul class="header-menus">
+21:         <% if @current_user 
+22:          <li>
+23:            <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+24:          </li>
+25:          <li>
+26:              <%= link_to("投稿一覧" , "/posts/index") %>
+27:          </li>
+28:          <li>
+29:              <%= link_to("新規投稿", "/posts/new") %>
+30:          </li>
+31:          <li>
+32:              <%= link_to("ユーザー一覧", "/users/index") %>
+33:          </li>
+34:          <li>
+35:              <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+36:          </li>
+37:    
+38:        <% else %>
+39:          <li>
+40:          <%= link_to("TweetAppとは" , "/about")%>
+41:          </li>
+42:         
+43:          <li>
+44:              <%= link_to("新規登録", "/signup") %>
+45:          </li>
+46:          <li>
+47:            <%= link_to("ログイン", "/login")%>
+48:          </li>
+49:        <% end%>
+50:        </ul>
+51:      </header>
+52:          <% if flash[:notice]%>
+53:          <div class="flash">
+54:            <%= flash[:notice]%>
+55:          </div>
+56:        <% end %>
+57:        <%= yield %>
+58:      </body>
+59:    </html>
+  
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+Started GET "/posts/index" for ::1 at 2022-07-03 22:12:39 +0900
+Processing by PostsController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1729)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 3265)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.7ms | Allocations: 9727)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>RolP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <header>
+    <div class="header-logo">
+        <% if @current_user %>
+          <%= link_to("TweetApp", "/posts/index") %>
+        <% else %>
+          <%= link_to("TweetApp", "/") %>
+        <% end %>
+    </div>
+    <ul class="header-menus">
+     <% if @current_user 
+      <li>
+        <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+      </li>
+      <li>
+          <%= link_to("投稿一覧" , "/posts/index") %>
+      </li>
+      <li>
+          <%= link_to("新規投稿", "/posts/new") %>
+      </li>
+      <li>
+          <%= link_to("ユーザー一覧", "/users/index") %>
+      </li>
+      <li>
+          <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+      </li>
+
+    <% else %>
+      <li>
+      <%= link_to("TweetAppとは" , "/about")%>
+      </li>
+     
+      <li>
+          <%= link_to("新規登録", "/signup") %>
+      </li>
+      <li>
+        <%= link_to("ログイン", "/login")%>
+      </li>
+    <% end%>
+    </ul>
+  </header>
+      <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice]%>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>RolP</title>
+5:        <meta name="viewport" content="width=device-width,initial-scale=1">
+6:        <%= csrf_meta_tags %>
+7:        <%= csp_meta_tag %>
+8:        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+9:      </head>
+10:    
+11:      <body>
+12:        <header>
+13:        <div class="header-logo">
+14:            <% if @current_user %>
+15:              <%= link_to("TweetApp", "/posts/index") %>
+16:            <% else %>
+17:              <%= link_to("TweetApp", "/") %>
+18:            <% end %>
+19:        </div>
+20:        <ul class="header-menus">
+21:         <% if @current_user 
+22:          <li>
+23:            <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+24:          </li>
+25:          <li>
+26:              <%= link_to("投稿一覧" , "/posts/index") %>
+27:          </li>
+28:          <li>
+29:              <%= link_to("新規投稿", "/posts/new") %>
+30:          </li>
+31:          <li>
+32:              <%= link_to("ユーザー一覧", "/users/index") %>
+33:          </li>
+34:          <li>
+35:              <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+36:          </li>
+37:    
+38:        <% else %>
+39:          <li>
+40:          <%= link_to("TweetAppとは" , "/about")%>
+41:          </li>
+42:         
+43:          <li>
+44:              <%= link_to("新規登録", "/signup") %>
+45:          </li>
+46:          <li>
+47:            <%= link_to("ログイン", "/login")%>
+48:          </li>
+49:        <% end%>
+50:        </ul>
+51:      </header>
+52:          <% if flash[:notice]%>
+53:          <div class="flash">
+54:            <%= flash[:notice]%>
+55:          </div>
+56:        <% end %>
+57:        <%= yield %>
+58:      </body>
+59:    </html>
+  
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+Started GET "/" for ::1 at 2022-07-03 22:12:45 +0900
+Processing by HomeController#top as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+Redirected to http://localhost:3000/posts/index
+Filter chain halted as :forbid_login_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1130)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-03 22:12:45 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 707)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 2301)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms | Allocations: 3333)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>RolP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <header>
+    <div class="header-logo">
+        <% if @current_user %>
+          <%= link_to("TweetApp", "/posts/index") %>
+        <% else %>
+          <%= link_to("TweetApp", "/") %>
+        <% end %>
+    </div>
+    <ul class="header-menus">
+     <% if @current_user 
+      <li>
+        <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+      </li>
+      <li>
+          <%= link_to("投稿一覧" , "/posts/index") %>
+      </li>
+      <li>
+          <%= link_to("新規投稿", "/posts/new") %>
+      </li>
+      <li>
+          <%= link_to("ユーザー一覧", "/users/index") %>
+      </li>
+      <li>
+          <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+      </li>
+
+    <% else %>
+      <li>
+      <%= link_to("TweetAppとは" , "/about")%>
+      </li>
+     
+      <li>
+          <%= link_to("新規登録", "/signup") %>
+      </li>
+      <li>
+        <%= link_to("ログイン", "/login")%>
+      </li>
+    <% end%>
+    </ul>
+  </header>
+      <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice]%>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>RolP</title>
+5:        <meta name="viewport" content="width=device-width,initial-scale=1">
+6:        <%= csrf_meta_tags %>
+7:        <%= csp_meta_tag %>
+8:        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+9:      </head>
+10:    
+11:      <body>
+12:        <header>
+13:        <div class="header-logo">
+14:            <% if @current_user %>
+15:              <%= link_to("TweetApp", "/posts/index") %>
+16:            <% else %>
+17:              <%= link_to("TweetApp", "/") %>
+18:            <% end %>
+19:        </div>
+20:        <ul class="header-menus">
+21:         <% if @current_user 
+22:          <li>
+23:            <%= link_to(@current_user.name , "/users/#{@current_user.id}")%>
+24:          </li>
+25:          <li>
+26:              <%= link_to("投稿一覧" , "/posts/index") %>
+27:          </li>
+28:          <li>
+29:              <%= link_to("新規投稿", "/posts/new") %>
+30:          </li>
+31:          <li>
+32:              <%= link_to("ユーザー一覧", "/users/index") %>
+33:          </li>
+34:          <li>
+35:              <%= button_to "ログアウト" , "/logout" ,  method: :post %>
+36:          </li>
+37:    
+38:        <% else %>
+39:          <li>
+40:          <%= link_to("TweetAppとは" , "/about")%>
+41:          </li>
+42:         
+43:          <li>
+44:              <%= link_to("新規登録", "/signup") %>
+45:          </li>
+46:          <li>
+47:            <%= link_to("ログイン", "/login")%>
+48:          </li>
+49:        <% end%>
+50:        </ul>
+51:      </header>
+52:          <% if flash[:notice]%>
+53:          <div class="flash">
+54:            <%= flash[:notice]%>
+55:          </div>
+56:        <% end %>
+57:        <%= yield %>
+58:      </body>
+59:    </html>
+  
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+app/views/layouts/application.html.erb:22: syntax error, unexpected '<'
+Started GET "/posts/index" for ::1 at 2022-07-03 22:14:22 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 959)
+  Rendered layout layouts/application.html.erb (Duration: 46.1ms | Allocations: 25357)
+Completed 200 OK in 51ms (Views: 48.5ms | ActiveRecord: 0.2ms | Allocations: 26917)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-03 22:14:25 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 661)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 2189)
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 0.2ms | Allocations: 3283)
+
+
+Started POST "/logout" for ::1 at 2022-07-03 22:14:27 +0900
+Processing by UsersController#logout as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+Redirected to http://localhost:3000/login
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1201)
+
+
+Started GET "/login" for ::1 at 2022-07-03 22:14:27 +0900
+Processing by UsersController#login_form as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.5ms | Allocations: 1280)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1375)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.2ms | Allocations: 2968)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+      <% if @error_@message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
+      <%= form_tag("/login") do%>
+        <p>メールアドレス</p>
+        <input name="email" value="<%= @email %>">
+        <p>パスワード</p>
+        <input name="password" type="password" value="<%= @password%>">
+        <input type="submit" value="ログイン">
+      <% end%>
+      </div>
+    </div>
+  </div>
+</div>
+):
+1:    <div class="main users-new">
+2:      <div class="container">
+3:        <div class="form-heading">ログイン</div>
+4:        <div class="form users-form">
+5:          <div class="form-body">
+6:          <% if @error_@message %>
+7:              <div class="form-error">
+8:                <%= @error_message %>
+9:              </div>
+10:            <% end %>
+11:          <%= form_tag("/login") do%>
+12:            <p>メールアドレス</p>
+13:            <input name="email" value="<%= @email %>">
+14:            <p>パスワード</p>
+15:            <input name="password" type="password" value="<%= @password%>">
+16:            <input type="submit" value="ログイン">
+17:          <% end%>
+18:          </div>
+19:        </div>
+20:      </div>
+21:    </div>
+  
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+Started GET "/login" for ::1 at 2022-07-03 22:15:36 +0900
+Processing by UsersController#login_form as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1237)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1326)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.1ms | Allocations: 2534)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+      <% if @error_@message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
+      <%= form_tag("/login") do%>
+        <p>メールアドレス</p>
+        <input name="email" value="<%= @email %>">
+        <p>パスワード</p>
+        <input name="password" type="password" value="<%= @password%>">
+        <input type="submit" value="ログイン">
+      <% end%>
+      </div>
+    </div>
+  </div>
+</div>
+):
+1:    <div class="main users-new">
+2:      <div class="container">
+3:        <div class="form-heading">ログイン</div>
+4:        <div class="form users-form">
+5:          <div class="form-body">
+6:          <% if @error_@message %>
+7:              <div class="form-error">
+8:                <%= @error_message %>
+9:              </div>
+10:            <% end %>
+11:          <%= form_tag("/login") do%>
+12:            <p>メールアドレス</p>
+13:            <input name="email" value="<%= @email %>">
+14:            <p>パスワード</p>
+15:            <input name="password" type="password" value="<%= @password%>">
+16:            <input type="submit" value="ログイン">
+17:          <% end%>
+18:          </div>
+19:        </div>
+20:      </div>
+21:    </div>
+  
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+app/views/users/login_form.html.erb:6: syntax error, unexpected instance variable, expecting `then' or ';' or '\n'
+app/views/users/login_form.html.erb:23: syntax error, unexpected `end', expecting end-of-input
+Started GET "/login" for ::1 at 2022-07-03 22:16:11 +0900
+Processing by UsersController#login_form as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.7ms | Allocations: 528)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 2597)
+Completed 200 OK in 13ms (Views: 8.6ms | ActiveRecord: 0.1ms | Allocations: 4195)
+
+
+Started GET "/" for ::1 at 2022-07-03 22:16:14 +0900
+Processing by HomeController#top as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.3ms | Allocations: 140)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 1713)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 0.1ms | Allocations: 3335)
+
+
+Started GET "/login" for ::1 at 2022-07-03 22:16:15 +0900
+Processing by UsersController#login_form as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.2ms | Allocations: 174)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 1521)
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.1ms | Allocations: 2752)
+
+
+Started GET "/signup" for ::1 at 2022-07-03 22:16:16 +0900
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 449)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 1796)
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 0.1ms | Allocations: 2962)
+
+
+Started GET "/about" for ::1 at 2022-07-03 22:16:17 +0900
+Processing by HomeController#about as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/about.html.erb within layouts/application
+  Rendered home/about.html.erb within layouts/application (Duration: 3.5ms | Allocations: 114)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 1462)
+Completed 200 OK in 10ms (Views: 7.4ms | ActiveRecord: 0.1ms | Allocations: 2584)
+
+
+Started GET "/" for ::1 at 2022-07-03 22:16:26 +0900
+Processing by HomeController#top as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 0.0ms | Allocations: 20)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 1368)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.1ms | Allocations: 2428)
+
+
+Started GET "/login" for ::1 at 2022-07-03 22:16:27 +0900
+Processing by UsersController#login_form as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.2ms | Allocations: 164)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 1511)
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.1ms | Allocations: 2571)
+
+
+Started POST "/login" for ::1 at 2022-07-03 22:16:35 +0900
+Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "email"=>"shibainu", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."password" = ? LIMIT ?[0m  [["email", "shibainu"], ["password", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:61:in `login'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.2ms | Allocations: 168)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 1507)
+Completed 200 OK in 7ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 3274)
+
+
+Started POST "/login" for ::1 at 2022-07-03 22:16:44 +0900
+Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "email"=>"shibainu@inu.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."password" = ? LIMIT ?[0m  [["email", "shibainu@inu.com"], ["password", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:61:in `login'
+Redirected to http://localhost:3000/posts/index
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms | Allocations: 1466)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-03 22:16:44 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 958)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 2689)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.3ms | Allocations: 4028)
+
+
+Started GET "/users/index" for ::1 at 2022-07-03 22:16:46 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1000)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 2531)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.2ms | Allocations: 3648)
+
+
+Started GET "/users/1" for ::1 at 2022-07-03 22:16:47 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 241)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 1760)
+Completed 200 OK in 13ms (Views: 4.2ms | ActiveRecord: 0.3ms | Allocations: 3251)
+
+
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserIdToPosts (20220703201236)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "posts" ADD "user_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220703201236"]]
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2022-07-04 05:24:44 +0900
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#top as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/top.html.erb within layouts/application
+  Rendered home/top.html.erb within layouts/application (Duration: 5.1ms | Allocations: 336)
+  Rendered layout layouts/application.html.erb (Duration: 44.4ms | Allocations: 24645)
+Completed 200 OK in 99ms (Views: 53.4ms | ActiveRecord: 0.5ms | Allocations: 31407)
+
+
+Started GET "/login" for ::1 at 2022-07-04 05:24:47 +0900
+Processing by UsersController#login_form as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/login_form.html.erb within layouts/application
+  Rendered users/login_form.html.erb within layouts/application (Duration: 0.6ms | Allocations: 546)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 2073)
+Completed 200 OK in 8ms (Views: 5.2ms | ActiveRecord: 0.1ms | Allocations: 3918)
+
+
+Started POST "/login" for ::1 at 2022-07-04 05:24:54 +0900
+Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "email"=>"shibainu@inu.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."password" = ? LIMIT ?[0m  [["email", "shibainu@inu.com"], ["password", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:61:in `login'
+Redirected to http://localhost:3000/posts/index
+Completed 302 Found in 7ms (ActiveRecord: 0.6ms | Allocations: 6473)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:24:54 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2657)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | Allocations: 4417)
+Completed 200 OK in 14ms (Views: 7.4ms | ActiveRecord: 0.9ms | Allocations: 7806)
+
+
+Started GET "/posts/new" for ::1 at 2022-07-04 05:24:56 +0900
+Processing by PostsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 4.5ms | Allocations: 427)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 1955)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.1ms | Allocations: 3110)
+
+
+Started POST "/posts/create" for ::1 at 2022-07-04 05:25:09 +0900
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "content"=>"今日も一日頑張るぞい\r\n"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1558)
+  Rendered layout layouts/application.html.erb (Duration: 9.3ms | Allocations: 3078)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.1ms | Allocations: 4867)
+
+
+Started POST "/posts/create" for ::1 at 2022-07-04 05:25:32 +0900
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "content"=>"今日も一日がんばるぞい"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:22:in `create'
+  [1m[36mPost Create (0.7ms)[0m  [1m[32mINSERT INTO "posts" ("content", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["content", "今日も一日がんばるぞい"], ["created_at", "2022-07-03 20:25:33.420029"], ["updated_at", "2022-07-03 20:25:33.420029"], ["user_id", 1]]
+  ↳ app/controllers/posts_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (8.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:22:in `create'
+Redirected to http://localhost:3000/posts/index
+Completed 302 Found in 22ms (ActiveRecord: 10.5ms | Allocations: 9923)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:25:33 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 892)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 2648)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 4131)
+
+
+Started GET "/posts/8" for ::1 at 2022-07-04 05:25:37 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 500)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 2019)
+Completed 200 OK in 8ms (Views: 4.2ms | ActiveRecord: 0.2ms | Allocations: 4220)
+
+
+Started GET "/posts/8" for ::1 at 2022-07-04 05:25:50 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 240)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 1759)
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 0.2ms | Allocations: 3202)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:36:44 +0900
+Processing by PostsController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1975)
+  Rendered layout layouts/application.html.erb (Duration: 26.6ms | Allocations: 4245)
+Completed 200 OK in 52ms (Views: 28.9ms | ActiveRecord: 0.6ms | Allocations: 10298)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:36:46 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 693)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2220)
+Completed 200 OK in 11ms (Views: 7.4ms | ActiveRecord: 0.2ms | Allocations: 3300)
+
+
+Started GET "/posts/8" for ::1 at 2022-07-04 05:36:50 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 525)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2044)
+Completed 200 OK in 16ms (Views: 7.8ms | ActiveRecord: 0.2ms | Allocations: 4585)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:50:34 +0900
+Processing by PostsController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1980)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 4251)
+Completed 200 OK in 16ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 10424)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:51:58 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendered posts/index.html.erb within layouts/application (Duration: 48.3ms | Allocations: 13615)
+  Rendered layout layouts/application.html.erb (Duration: 48.7ms | Allocations: 13721)
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 0.4ms | Allocations: 15315)
+
+
+  
+ActionView::Template::Error (undefined method `image_name' for nil:NilClass):
+     5:     <%  @posts.each do |post|%>
+     6:     <div class="posts-index-item">
+     7:      <div class="post-left">
+     8:         <img src="<%= "/user_images/#{post.user.image_name}" %>">
+     9:       </div>
+    10:       <div class="post-right">
+    11:           <div class="post-user-name">
+  
+app/views/posts/index.html.erb:8
+app/views/posts/index.html.erb:5
+Started GET "/posts/index" for ::1 at 2022-07-04 05:53:45 +0900
+Processing by PostsController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 6266)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 6360)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 1.6ms | Allocations: 12902)
+
+
+  
+ActionView::Template::Error (undefined method `image_name' for nil:NilClass):
+     5:     <%  @posts.each do |post|%>
+     6:     <div class="posts-index-item">
+     7:      <div class="post-left">
+     8:         <img src="<%= "/user_images/#{post.user.image_name}" %>">
+     9:       </div>
+    10:       <div class="post-right">
+    11:           <div class="post-user-name">
+  
+app/views/posts/index.html.erb:8
+app/views/posts/index.html.erb:5
+Started GET "/users/index" for ::1 at 2022-07-04 05:53:48 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1138)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 3415)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.2ms | Allocations: 5061)
+
+
+Started GET "/posts/new" for ::1 at 2022-07-04 05:53:50 +0900
+Processing by PostsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 4.5ms | Allocations: 430)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 2018)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.1ms | Allocations: 3149)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 05:53:51 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 4987)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 5075)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.3ms | Allocations: 6043)
+
+
+  
+ActionView::Template::Error (undefined method `image_name' for nil:NilClass):
+     5:     <%  @posts.each do |post|%>
+     6:     <div class="posts-index-item">
+     7:      <div class="post-left">
+     8:         <img src="<%= "/user_images/#{post.user.image_name}" %>">
+     9:       </div>
+    10:       <div class="post-right">
+    11:           <div class="post-user-name">
+  
+app/views/posts/index.html.erb:8
+app/views/posts/index.html.erb:5
+Started GET "/posts/index" for ::1 at 2022-07-04 05:55:56 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 5354)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 5448)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms | Allocations: 6904)
+
+
+  
+ActionView::Template::Error (undefined method `image_name' for nil:NilClass):
+     5:     <%  @posts.each do |post|%>
+     6:     <div class="posts-index-item">
+     7:      <div class="post-left">
+     8:         <img src="<%="/user_images/#{post.user.image_name}"%>">
+     9:       </div>
+    10:       <div class="post-right">
+    11:           <div class="post-user-name">
+  
+app/views/posts/index.html.erb:8
+app/views/posts/index.html.erb:5
+Started GET "/posts/index" for ::1 at 2022-07-04 05:56:06 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 5357)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 5451)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms | Allocations: 6990)
+
+
+  
+ActionView::Template::Error (undefined method `image_name' for nil:NilClass):
+     5:     <%  @posts.each do |post|%>
+     6:     <div class="posts-index-item">
+     7:      <div class="post-left">
+     8:         <img src=<%="/user_images/#{post.user.image_name}"%>>
+     9:       </div>
+    10:       <div class="post-right">
+    11:           <div class="post-user-name">
+  
+app/views/posts/index.html.erb:8
+app/views/posts/index.html.erb:5
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
