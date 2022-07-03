@@ -96,10 +96,16 @@ header {
   padding-left: 15px;
 }
 
-.header-menus a {
+.header-menus a  {
   float: left;
   font-size: 13px;
   color: white;
+}
+.header-menus button{
+  background:transparent;
+  border:none;
+  font-size:13px;
+  color:white;
 }
 
 .header-menus .fa {
