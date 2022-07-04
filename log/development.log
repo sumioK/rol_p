@@ -12460,3 +12460,563 @@ Processing by PostsController#show as HTML
 Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 0.3ms | Allocations: 4334)
 
 
+Started GET "/posts/9" for ::1 at 2022-07-04 21:32:53 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 6.8ms | Allocations: 8627)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 8724)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.8ms | Allocations: 17279)
+
+
+  
+ActionView::Template::Error (undefined method `post_to' for #<ActionView::Base:0x0000000001eff0>):
+    10:         <%= @post.created_at%>
+    11:       </div>
+    12:       <% if Like.find_by(user_id: @current_user.id , post_id: @post.id)%>
+    13:         <%= post_to"いいね!済み" , "/likes/#{@post.id}/destroy" , method: :post %>%
+    14:       <% else %>
+    15:         <%= button_to "いいね!" , "/likes/#{@post.id}/create" , method: :post%>
+    16:       <% end %>
+  
+app/views/posts/show.html.erb:13
+Started GET "/posts/9" for ::1 at 2022-07-04 21:33:00 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 5.3ms | Allocations: 5880)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 5979)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.3ms | Allocations: 8394)
+
+
+  
+ActionView::Template::Error (undefined method `post_to' for #<ActionView::Base:0x0000000001f360>):
+    10:         <%= @post.created_at%>
+    11:       </div>
+    12:       <% if Like.find_by(user_id: @current_user.id , post_id: @post.id)%>
+    13:         <%= post_to"いいね!済み" , "/likes/#{@post.id}/destroy" , method: :post %>
+    14:       <% else %>
+    15:         <%= button_to "いいね!" , "/likes/#{@post.id}/create" , method: :post%>
+    16:       <% end %>
+  
+app/views/posts/show.html.erb:13
+Started GET "/posts/9" for ::1 at 2022-07-04 21:33:24 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1503)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 3726)
+Completed 200 OK in 11ms (Views: 7.5ms | ActiveRecord: 0.3ms | Allocations: 6179)
+
+
+Started POST "/likes/9/destroy" for ::1 at 2022-07-04 21:33:26 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/likes/9/destroy"):
+  
+Started POST "/likes/9/destroy" for ::1 at 2022-07-04 21:34:28 +0900
+Processing by LikesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/likes_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mLike Destroy (0.4ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 21ms (ActiveRecord: 10.1ms | Allocations: 10256)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:34:28 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1144)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 2844)
+Completed 200 OK in 11ms (Views: 5.1ms | ActiveRecord: 1.0ms | Allocations: 7979)
+
+
+Started POST "/likes/9/create" for ::1 at 2022-07-04 21:34:30 +0900
+Processing by LikesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (1.0ms)[0m  [1m[32mINSERT INTO "likes" ("user_id", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["post_id", 9], ["created_at", "2022-07-04 12:34:30.205420"], ["updated_at", "2022-07-04 12:34:30.205420"]]
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 14ms (ActiveRecord: 9.3ms | Allocations: 2862)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:34:30 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 952)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 2471)
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 0.4ms | Allocations: 4351)
+
+
+Started POST "/likes/9/destroy" for ::1 at 2022-07-04 21:34:31 +0900
+Processing by LikesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/likes_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mLike Destroy (1.7ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mTRANSACTION (12.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 19ms (ActiveRecord: 14.4ms | Allocations: 2828)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:34:31 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2461)
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 0.3ms | Allocations: 4317)
+
+
+Started POST "/likes/9/create" for ::1 at 2022-07-04 21:34:31 +0900
+Processing by LikesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (1.9ms)[0m  [1m[32mINSERT INTO "likes" ("user_id", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["post_id", 9], ["created_at", "2022-07-04 12:34:31.663957"], ["updated_at", "2022-07-04 12:34:31.663957"]]
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 19ms (ActiveRecord: 14.1ms | Allocations: 2624)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:34:31 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 951)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2470)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.3ms | Allocations: 4320)
+
+
+Started POST "/likes/9/destroy" for ::1 at 2022-07-04 21:34:32 +0900
+Processing by LikesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/likes_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mLike Destroy (1.8ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 6]]
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 20ms (ActiveRecord: 14.4ms | Allocations: 2798)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:34:32 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 2461)
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 0.3ms | Allocations: 4329)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:38:15 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 96.4ms | Allocations: 9139)
+Completed 200 OK in 102ms (Views: 97.0ms | ActiveRecord: 0.3ms | Allocations: 11001)
+
+
+Started POST "/likes/9/create" for ::1 at 2022-07-04 21:38:53 +0900
+Processing by LikesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (1.7ms)[0m  [1m[32mINSERT INTO "likes" ("user_id", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["post_id", 9], ["created_at", "2022-07-04 12:38:54.002656"], ["updated_at", "2022-07-04 12:38:54.002656"]]
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 19ms (ActiveRecord: 13.8ms | Allocations: 2628)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:38:54 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 951)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2470)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.3ms | Allocations: 4326)
+
+
+Started POST "/likes/9/destroy" for ::1 at 2022-07-04 21:38:55 +0900
+Processing by LikesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/likes_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mLike Destroy (1.9ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 7]]
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mTRANSACTION (12.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 19ms (ActiveRecord: 14.8ms | Allocations: 2818)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:38:55 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2461)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.3ms | Allocations: 4311)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:39:16 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 17.2ms | Allocations: 6487)
+Completed 200 OK in 21ms (Views: 17.7ms | ActiveRecord: 0.4ms | Allocations: 8343)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:39:24 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | Allocations: 2506)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 0.3ms | Allocations: 4365)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:40:14 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 17.3ms | Allocations: 6486)
+Completed 200 OK in 21ms (Views: 17.7ms | ActiveRecord: 0.3ms | Allocations: 8342)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:42:17 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1493)
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 7829)
+Completed 200 OK in 25ms (Views: 21.1ms | ActiveRecord: 0.3ms | Allocations: 10222)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:42:23 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 22.7ms | Allocations: 6480)
+Completed 200 OK in 27ms (Views: 23.1ms | ActiveRecord: 0.4ms | Allocations: 8409)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:42:33 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 15.8ms | Allocations: 6490)
+Completed 200 OK in 20ms (Views: 16.2ms | ActiveRecord: 0.4ms | Allocations: 8343)
+
+
+Started POST "/likes/9/create" for ::1 at 2022-07-04 21:42:35 +0900
+Processing by LikesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (0.9ms)[0m  [1m[32mINSERT INTO "likes" ("user_id", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["post_id", 9], ["created_at", "2022-07-04 12:42:35.592991"], ["updated_at", "2022-07-04 12:42:35.592991"]]
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 15ms (ActiveRecord: 9.3ms | Allocations: 2668)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:42:35 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 952)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 2471)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 4327)
+
+
+Started POST "/likes/9/destroy" for ::1 at 2022-07-04 21:42:36 +0900
+Processing by LikesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/likes_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mLike Destroy (2.1ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+  [1m[36mTRANSACTION (21.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/likes_controller.rb:19:in `destroy'
+Redirected to http://localhost:3000/posts/9
+Completed 302 Found in 30ms (ActiveRecord: 23.7ms | Allocations: 2828)
+
+
+Started GET "/posts/9" for ::1 at 2022-07-04 21:42:36 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? LIMIT ?[0m  [["user_id", 5], ["post_id", 9], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:12
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 2466)
+Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 0.3ms | Allocations: 4331)
+
+
+Started GET "/posts/index" for ::1 at 2022-07-04 21:42:37 +0900
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8:in `user'
+  Rendered posts/index.html.erb within layouts/application (Duration: 9.9ms | Allocations: 8435)
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | Allocations: 9962)
+Completed 200 OK in 16ms (Views: 12.7ms | ActiveRecord: 0.8ms | Allocations: 11027)
+
+
